@@ -1,7 +1,12 @@
 <?php
 namespace http\controller;
 
-class Web {
+use core\lib\controller\Controller;
+
+class Web extends Controller{
+    public function init(){
+        parent::init();
+    }
     public function assign($key = '',$val = ''){
         echo 'assign';
     }
