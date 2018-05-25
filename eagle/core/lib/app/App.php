@@ -1,8 +1,8 @@
 <?php
 
-namespace app;
-use route\RouteExplicit;
-use route\RouteImplicit;
+namespace core\lib\app;
+use core\lib\route\RouteExplicit;
+use core\lib\route\RouteImplicit;
 
 class App {
     public static function run(){

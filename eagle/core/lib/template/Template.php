@@ -1,5 +1,5 @@
 <?php
-namespace template;
+namespace core\lib\template;
 
 class Template {
     

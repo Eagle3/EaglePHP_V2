@@ -1,5 +1,5 @@
 <?php
-namespace template\driver;
+namespace core\lib\template\driver;
 
 class Eagle {
     

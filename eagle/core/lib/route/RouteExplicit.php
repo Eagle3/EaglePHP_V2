@@ -2,7 +2,7 @@
 /**
  * 显式
  */
-namespace route;
+namespace core\lib\route;
 
 class RouteExplicit {
     public static function dispatch() {}

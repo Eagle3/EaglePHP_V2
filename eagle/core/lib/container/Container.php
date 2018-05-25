@@ -1,5 +1,5 @@
 <?php
-namespace container;
+namespace core\lib\container;
 
 class Container {
     
