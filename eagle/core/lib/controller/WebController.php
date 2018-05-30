@@ -30,6 +30,7 @@ class WebController extends BaseController {
     public function display($tpl = ''){
         $this->template->display($tpl);
     }
+    //校验验证码
     public function verifyCode( $code ) {
         if ( $this->verifyType == 'cookie' && isset( $_COOKIE[$this->verifyName] ) && strtolower( $code ) == strtolower( $_COOKIE[$this->verifyName] ) ) {
             return true;
