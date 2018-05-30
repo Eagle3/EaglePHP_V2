@@ -2,4 +2,5 @@
 .buildpath
 .project
 .gitigore
-/.tmp
+/tmp
+/upload
