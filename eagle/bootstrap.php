@@ -22,6 +22,7 @@ defined('ROOT_UPLOAD_PATH') or define('ROOT_UPLOAD_PATH', ROOT_PATH . 'upload' .
 
 // 框架相关路径
 defined('EAGLE_PATH') or define('EAGLE_PATH', ROOT_PATH . 'eagle' . DS);
+defined('EAGLE_PLUGIN_PATH') or define('EAGLE_PLUGIN_PATH', EAGLE_PATH . 'plugin' . DS);
 defined('EAGLE_CORE_PATH') or define('EAGLE_CORE_PATH', EAGLE_PATH . 'core' . DS);
 defined('EAGLE_CORE_COMMON_PATH') or define('EAGLE_CORE_COMMON_PATH', EAGLE_CORE_PATH . 'common' . DS);
 defined('EAGLE_CORE_COMMON_CONFIG_PATH') or define('EAGLE_CORE_COMMON_CONFIG_PATH', EAGLE_CORE_COMMON_PATH . 'config' . DS);
@@ -44,9 +45,9 @@ $LANGCONFIG = getLangConfig($SYSCONFIG['_LANGUAGE']);
 
 // 注册自动加载
 use core\lib\autoload\Autoload;
-require EAGLE_CORE_LIB_PATH . 'autoload/Autoload.php';
+require_once EAGLE_CORE_LIB_PATH . 'autoload/Autoload.php';
 
 // 运行
 use core\lib\app\App;
-require EAGLE_CORE_LIB_PATH . 'app/App.php';
+require_once EAGLE_CORE_LIB_PATH . 'app/App.php';
 App::run();

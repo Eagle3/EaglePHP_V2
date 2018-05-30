@@ -39,7 +39,7 @@ class Smarty implements Engine {
         return $this->smarty->template_dir[0] . $tpl;
     }
     private function initSmarty() {
-        import(EAGLE_PATH . 'core/lib/template/driver/smarty/Autoloader.php');
+        import(EAGLE_PATH . 'plugin/smarty/Autoloader.php');
         \Smarty_Autoloader::register();
         $this->smarty = new \Smarty();
         $this->initSmartyStatus = true;

@@ -19,14 +19,14 @@ class Autoload {
         
         // 框架eagle目录
         if(file_exists(EAGLE_PATH . $classFile)){
-            echo '<br>'.EAGLE_PATH . $classFile . '<br>';
+            //echo '<br>'.EAGLE_PATH . $classFile . '<br>';
             require_once EAGLE_PATH . $classFile;
             return true;
         }
         
         // 项目app目录
         if(file_exists(APP_PATH . $classFile)){
-            echo '<br>'.APP_PATH . $classFile . '<br>';
+            //echo '<br>'.APP_PATH . $classFile . '<br>';
             require_once APP_PATH . $classFile;
             return true;
         }
