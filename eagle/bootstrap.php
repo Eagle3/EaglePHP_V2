@@ -43,6 +43,10 @@ $SYSCONFIG = array_merge((require EAGLE_CORE_COMMON_CONFIG_PATH . 'config.php'),
 // 语言包
 $LANGCONFIG = getLangConfig($SYSCONFIG['_LANGUAGE']);
 
+if(isset($SYSCONFIG['_SESSION_OPEN']) && $SYSCONFIG['_SESSION_OPEN']){
+    session_start();
+}
+
 // 注册自动加载
 use core\lib\autoload\Autoload;
 require_once EAGLE_CORE_LIB_PATH . 'autoload/Autoload.php';

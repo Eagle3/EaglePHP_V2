@@ -2,6 +2,7 @@
 namespace http\controller\home;
 
 use core\lib\controller\WebController;
+use core\lib\captcha\Captcha;
 
 class Index extends WebController {
     public function init(){
@@ -19,5 +20,14 @@ class Index extends WebController {
         
         
         $this->display('default/index/index.html');
+    }
+    
+    public function code(){
+        Captcha::init();
+        Captcha::set( array(
+                'width' => 100,
+                'height' => 40
+        ) );
+        Captcha::output();
     }
 }
