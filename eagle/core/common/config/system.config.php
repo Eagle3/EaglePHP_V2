@@ -61,14 +61,36 @@ return [
         
         // 数据库配置
         '_PDO_CONFIG' => [
-                'host' => 'localhost',
-                'userName' => 'root',
-                'passWord' => 'root',
-                'port' => 3306,
-                'dbName' => 'test',
-                'prefix' => '',
-                'charSet' => 'utf8',
-                'driverOptions' => [],
+                'default' => [
+                        'host' => 'localhost',
+                        'userName' => 'root',
+                        'passWord' => 'root',
+                        'port' => 3306,
+                        'dbName' => 'test',
+                        'prefix' => '',
+                        'charSet' => 'utf8',
+                        'driverOptions' => [],
+                ],
+                'connection1' => [
+                        'host' => 'localhost',
+                        'userName' => 'root',
+                        'passWord' => 'root',
+                        'port' => 3306,
+                        'dbName' => 'test',
+                        'prefix' => '',
+                        'charSet' => 'utf8',
+                        'driverOptions' => [],
+                ],
+                'connection2' => [
+                        'host' => 'localhost',
+                        'userName' => 'root',
+                        'passWord' => 'root',
+                        'port' => 3306,
+                        'dbName' => 'test',
+                        'prefix' => '',
+                        'charSet' => 'utf8',
+                        'driverOptions' => [],
+                ],
         ],
         
         // 缓存配置

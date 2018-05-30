@@ -3,6 +3,9 @@ namespace http\controller\home;
 
 use core\lib\controller\WebController;
 use core\lib\captcha\Captcha;
+use core\lib\pdo\Pdo;
+use core\lib\model\Model;
+use http\model\City;
 
 class Index extends WebController {
     public function init(){
@@ -31,7 +34,19 @@ class Index extends WebController {
         Captcha::output();
     }
     public function db(){
+        $pdo = new Pdo('default');
+        echo $pdo->getErrMsg();
+        $sql = ' SELECT * FROM `citycode` WHERE id<? ';
+        $data = $pdo->getAll($sql,[10]);
         
+        $sql = ' SELECT * FROM `citycode` WHERE id<10 ';
+        $pdo->execute($sql);
+        $data = $pdo->count();
+        p($data,$pdo->fetchAll());
+        
+        $model = new City();
+        $data = $model->getList([['id','<',10]]);
+        p($data);
     }
 
     
