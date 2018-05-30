@@ -30,4 +30,9 @@ class Index extends WebController {
         ) );
         Captcha::output();
     }
+    public function db(){
+        
+    }
+
+    
 }
