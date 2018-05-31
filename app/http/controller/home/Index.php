@@ -34,18 +34,40 @@ class Index extends WebController {
         Captcha::output();
     }
     public function db(){
-        $pdo = new Pdo('default');
-        echo $pdo->getErrMsg();
-        $sql = ' SELECT * FROM `citycode` WHERE id<? ';
-        $data = $pdo->getAll($sql,[10]);
+//         $pdo = new Pdo('default');
+//         echo $pdo->getErrMsg();
+//         $sql = ' SELECT * FROM `citycode` WHERE id<? ';
+//         $data = $pdo->getAll($sql,[10]);
         
-        $sql = ' SELECT * FROM `citycode` WHERE id<10 ';
-        $pdo->execute($sql);
-        $data = $pdo->count();
-        p($data,$pdo->fetchAll());
+//         $sql = ' SELECT * FROM `citycode` WHERE id in (?,?,?) ';
+//         $pdo->execute($sql,[15,16,17]);
+//         $data = $pdo->count();
+//         p($data,$pdo->fetchAll());
         
-        $model = new City();
-        $data = $model->getList([['id','<',10]]);
+         $model = new City();
+//         $where = [
+//                 ['city_id','<',"100 or 1=1"],
+//                 //['city_id','in',[51,90]],
+//                 //['city_id','between and',[60,63]],
+//                 //['city_id','not between and',[70,80]],
+//                 //['cityname',' LIKE','北'],
+//                 //['cityname','BEFORE LIKE','北'],
+//                 //['cityname','AFTER LIKE','北'],
+//                 //['cityname','NOT LIKE','北'],
+//                 //['cityname','BEFORE NOT LIKE','北'],
+//                 //['cityname','AFTER NOT LIKE','北'],
+//                 //['cityname','IS NULL',],
+//                 //['cityname','IS NOT NULL',],
+//         ];
+//         $orWhere = [];
+//         $groupBy = ['province_id'];
+//         $orderBy = ['province_id'=>'asc'];
+//         $limit = [0,0];
+//         $fields = ['*'];
+//         $data = $model->getList($where,[],[],[],$limit,$fields);
+//         p($data);
+        
+        $data = $model->getListRawSql();
         p($data);
     }
 

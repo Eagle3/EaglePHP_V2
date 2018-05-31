@@ -66,6 +66,16 @@ class Pdo {
     }
     
     /**
+     * 返回受上一个 SQL 语句影响的行数
+     */
+    public function count() {
+        if ( is_object( $this->pdoStmt ) ) {
+            return $this->pdoStmt->rowCount();
+        }
+        return false;
+    }
+    
+    /**
      * 最后执行SQL
      */
     public function lastSql() {
@@ -253,19 +263,12 @@ class Pdo {
      */
     public function execute( $sql, $params_arr = [] ) {
         $this->pdoStmt = $this->pdo->prepare( $sql );
-        $status = $this->pdoStmt->execute( $params_arr && is_array($params_arr) ? $params_arr : [] );
+        $this->pdoStmt->execute( $params_arr && is_array($params_arr) ? $params_arr : [] );
         $this->last_sql = $this->formatSql( $sql, $params_arr );
         if ( $this->pdo->lastInsertId() ) {
             return $this->pdo->lastInsertId();
         }
-        return $status;
-        
-        /*
-         * if( $status && $this->pdoStmt->rowCount() ){
-         * return true;
-         * }
-         * return false;
-         */
+        return $this->pdoStmt->rowCount();
     }
     
     /**
@@ -280,16 +283,21 @@ class Pdo {
     public function query( $sql, $params_arr = [] ) {
         if ( empty( $params_arr ) ) {
             $this->pdoStmt = $this->pdo->query( $sql );
-            $this->last_sql = $this->formatSql( $sql, $params_arr );
-            return $this->pdoStmt;
+            $this->last_sql = $this->formatSql( $params_arr && is_array($params_arr) ? $params_arr : [] );
+            if ( $this->pdo->lastInsertId() ) {
+                return $this->pdo->lastInsertId();
+            }
+            return $this->pdoStmt->rowCount();
         } else {
             if ( false != $this->pdoStmt = $this->pdo->prepare( $sql ) ) {
                 $this->pdoStmt->execute( $params_arr && is_array($params_arr) ? $params_arr : [] );
                 $this->last_sql = $this->formatSql( $sql, $params_arr );
-                return $this->pdoStmt;
+                if ( $this->pdo->lastInsertId() ) {
+                    return $this->pdo->lastInsertId();
+                }
+                return $this->pdoStmt->rowCount();
             }
         }
-        return false;
     }
     
     /**
@@ -310,16 +318,6 @@ class Pdo {
             return $this->pdoStmt->fetch( \PDO::FETCH_ASSOC );
         }
         return array();
-    }
-    
-    /**
-     * 返回受上一个 SQL 语句影响的行数
-     */
-    public function count() {
-        if ( is_object( $this->pdoStmt ) ) {
-            return $this->pdoStmt->rowCount();
-        }
-        return false;
     }
     
     /**
@@ -376,14 +374,14 @@ class Pdo {
         } );
             return trim( vsprintf( $sql, $params_arr ), '\'' );
             
-            // 写法2
-            array_unshift( $params_arr, preg_replace( '/\?/', '%s', $sql ) );
-            array_walk( $params_arr, function ( &$val, $key ) {
-                if ( $key > 0 ) {
-                    $val = '\'' . $this->escapeString( $val ) . '\'';
-                }
-            } );
-                return trim( call_user_func_array( 'sprintf', $params_arr ), '\'' );
+        // 写法2
+        array_unshift( $params_arr, preg_replace( '/\?/', '%s', $sql ) );
+        array_walk( $params_arr, function ( &$val, $key ) {
+            if ( $key > 0 ) {
+                $val = '\'' . $this->escapeString( $val ) . '\'';
+            }
+        } );
+            return trim( call_user_func_array( 'sprintf', $params_arr ), '\'' );
     }
     
     /**
