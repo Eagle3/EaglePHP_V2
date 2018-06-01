@@ -256,25 +256,16 @@ class Model {
         }
         return $this->pdoConnect->update($this->table, $updateData, $this->where($where) . $this->orWhere($orWhere), $this->prepareParam);
     }
+    public function insert($insertData,$replace = false) {
+        if(!$this->pdoConnect){
+            $this->connectPdo();
+        }
+        return $this->pdoConnect->insert($this->table, $insertData,$replace);
+    }
     public function getLastsql() {
         if(!$this->pdoConnect){
             $this->connectPdo();
         }
         return $this->pdoConnect->lastSql();
-    }
-    
-    // 使用rawSql方法更新，删除时使用
-    public function getAffectedCount() {
-        return $this->pdoConnect->count();
-    }
-    
-    // 使用rawSql方法插入时使用
-    public function getlastInsertId() {
-        return $this->pdoConnect->lastInsertId();
-    }
-    
-    // 使用rawSql方法查询时使用
-    public function getResult() {
-        return $this->pdoConnect->fetchAll();
     }
 }
