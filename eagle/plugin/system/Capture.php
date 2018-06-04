@@ -1,4 +1,7 @@
 <?php
+/**
+*  抓取网络图片并存入文件
+*/
 
 namespace plugin\system;
 

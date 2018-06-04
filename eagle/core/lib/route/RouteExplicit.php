@@ -5,5 +5,7 @@
 namespace core\lib\route;
 
 class RouteExplicit {
-    public static function dispatch() {}
+    public static function dispatch() {
+        
+    }
 }
