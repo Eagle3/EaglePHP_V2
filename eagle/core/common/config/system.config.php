@@ -68,7 +68,7 @@ return [
                         'port' => 3306,
                         'dbName' => 'test',
                         'prefix' => '',
-                        'charSet' => 'utf8',
+                        'charSet' => 'utf8', //utf8|gbk
                         'driverOptions' => [],
                 ],
                 'connection1' => [
