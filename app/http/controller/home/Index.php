@@ -2,8 +2,7 @@
 namespace http\controller\home;
 
 use core\lib\controller\WebController;
-use core\lib\captcha\Captcha;
-use core\lib\pdo\Pdo;
+use plugin\system\captcha\Captcha;
 use core\lib\model\Model;
 use http\model\City;
 

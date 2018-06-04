@@ -1,5 +1,5 @@
 <?php
-namespace core\lib\captcha;
+namespace plugin\system\captcha;
 
 class Captcha {
     private static $charSet = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789';
