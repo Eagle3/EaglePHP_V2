@@ -5,8 +5,8 @@ return [
         '_LANGUAGE' => 'chinese',
         //路由控制
         '_ROUTE' => [
-                //0隐式 1显式
-                '_TYPE' => 0,
+                //1隐式 2显式
+                '_TYPE' => 2,
                 //参数名,_TYPE=1时使用
                 '_PARAM_NAME' => [
                         '_MOULDE' => 'm',
