@@ -5,13 +5,20 @@ use core\lib\controller\WebController;
 use plugin\system\captcha\Captcha;
 use core\lib\model\Model;
 use http\model\City;
+use plugin\system\Curl;
 
 class Index extends WebController {
     public function init(){
         parent::init();
     }
     public function index(){
-        echo 'index';
+        
+        //写入cookie，通知另一个应用（1.通过script标签链接另一个应用的PHP地址 2.通过iframe标签链接另一个应用的PHP地址 3.curl行不通）也写入此cookie数据即完成同步登录
+        setcookie('name','jack',time()+3600*24*30,'/');
+//         Curl::init('http://eagle.local/index.php?r=home&c=index&a=crossCookie',['name' => 'jack'],'GET');
+//         $res = Curl::send();
+//         var_dump($res);
+        
         
         $this->assign([
                 'name' => 'jack'

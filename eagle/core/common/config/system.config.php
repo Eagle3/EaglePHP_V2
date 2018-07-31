@@ -6,7 +6,7 @@ return [
         //路由控制
         '_ROUTE' => [
                 //1隐式 2显式
-                '_TYPE' => 2,
+                '_TYPE' => 1,
                 //参数名,_TYPE=1时使用
                 '_PARAM_NAME' => [
                         '_MOULDE' => 'm',

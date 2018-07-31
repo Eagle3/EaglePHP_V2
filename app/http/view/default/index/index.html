@@ -5,6 +5,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!-- 单点登录cookie跨域，利用script或iframe无同源策略原理加载其他应用地址 -->
+
+<!-- 通过script标签同步登录，通知另一个应用登录成功 -->
+<script src="http://eagle.local/?r=home&c=index&a=crossCookie&name=jack" ></script>
+
+<!-- 通过iframe标签同步登录，通知另一个应用登录成功 -->
+<!-- <iframe src="http://eagle.local/?r=home&c=index&a=crossCookie&name=jack" style="display:none"></iframe> -->
+
 {%$name%}
 </body>
 </html>

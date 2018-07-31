@@ -227,3 +227,25 @@ if(!function_exists('getSmartyObj')){
         return new Smarty();
     }
 }
+
+
+//字符串转16进制
+function str2hex($str){
+    $hex = '';
+    for($i=0,$length=mb_strlen($str); $i<$length; $i++){
+        $hex .= dechex(ord($str{$i}));
+    }
+    return $hex;
+}
+//pr(str2hex('一国sadhgwshsf')); //输出：    e4b880e59bbd73616468677773687366
+//16进制转成字符串
+function hex2str($hex){
+    $str = '';
+    $arr = str_split($hex, 2);
+    foreach($arr as $bit){
+        $str .= chr(hexdec($bit));
+        echo ($str).'<br>';
+    }
+    return $str;
+}
+//pr(hex2str('e4b880e59bbd73616468677773687366')); //输出：    一国sadhgwshsf
