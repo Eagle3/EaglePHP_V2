@@ -11,6 +11,13 @@ class Index extends WebController {
     public function init(){
         parent::init();
     }
+    
+    public function getInclude(){
+        //返回被 include 和 require 文件名的 array
+        pr( get_included_files() );
+    }
+    
+    
     public function index(){
         
         //写入cookie，通知另一个应用（1.通过script标签链接另一个应用的PHP地址 2.通过iframe标签链接另一个应用的PHP地址 3.curl行不通）也写入此cookie数据即完成同步登录
