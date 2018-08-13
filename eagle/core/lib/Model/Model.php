@@ -262,7 +262,7 @@ class Model {
         }
         return $this->pdoConnect->insert($this->table, $insertData,$replace);
     }
-    public function getLastsql() {
+    public function getLastSql() {
         if(!$this->pdoConnect){
             $this->connectPdo();
         }
