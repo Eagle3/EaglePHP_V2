@@ -1,6 +1,6 @@
 /.git
-.settings
-.buildpath
-.project
+/.settings
+/.buildpath
+/.project
 /tmp
 /upload

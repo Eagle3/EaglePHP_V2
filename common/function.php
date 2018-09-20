@@ -15,8 +15,9 @@ function pr(){
  */
 function prstack(){
     $array = debug_backtrace();
-    // print_r($array);//信息很齐全
+    //print_r($array);//信息很齐全
     unset( $array[0] );
+    $html = '';
     foreach( $array as $row ){
         $html .= $row['file'] . ':' . $row['line'] . '行,调用方法:' . $row['function'] . "<p>";
     }
