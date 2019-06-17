@@ -1,5 +1,5 @@
 <?php
-
+// mime => prefix
 $type = array(
     'application/andrew-inset' => 'ez',
     'application/applixware' => 'aw',
@@ -773,8 +773,7 @@ $type = array(
 );
 
 
-
-
+// prefix => mime
 return array(
     '3dml'=>'text/vnd.in3d.3dml',
     '3ds'=>'image/x-3ds',
@@ -1758,3 +1757,17 @@ return array(
     'zmm'=>'application/vnd.handheld-entertainment+xml',
     // 123=>'application/vnd.lotus-1-2-3',
 );
+
+// 'mime_types' => [
+//     'audio/mpeg',
+//     'video/x-ms-asf',
+//     'audio/x-ms-wma',
+//     'audio/x-aac',
+//     'audio/x-pn-realaudio',
+//     'audio/x-pn-realaudio-plugin',
+//     'audio/x-flac',
+//     'application/x-shockwave-flash',
+//     'audio/x-aiff',
+//     'audio/midi',
+//     'application/ogg',
+// ],
