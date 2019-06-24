@@ -15,6 +15,7 @@ class Index extends WebController {
     public function getInclude(){
         //返回被 include 和 require 文件名的 array
         pr( get_included_files() );
+        //
     }
     
     
