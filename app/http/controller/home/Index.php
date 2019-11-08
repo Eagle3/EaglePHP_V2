@@ -6,6 +6,7 @@ use plugin\system\captcha\Captcha;
 use core\lib\model\Model;
 use http\model\City;
 use plugin\system\Curl;
+use plugin\tools\ArrayTools;
 
 class Index extends WebController {
     public function init(){
@@ -86,5 +87,13 @@ class Index extends WebController {
         p($data);
     }
 
+    function test(){
+        $data = [
+            'aa' => '123'
+        ];
+        $res = ArrayTools::haveKey($data,'bb');
+        p($res);
+
+    }
     
 }
