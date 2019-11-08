@@ -67,5 +67,34 @@ class ArrayTools{
         return $data;
     }
 
+    /**
+     * 过滤掉一维数组中指定的某些元素
+     * @param array $arr         一维数组
+     * @param array $filterKeys  需要过滤的元素的键 ['id','name']
+     * @return array
+     */
+    public static function filterKeys(array $arr,array $filterKeys){
+        foreach ($arr as $key => $value){
+            if(in_array($key,$filterKeys)){
+                unset($arr[$key]);
+            }
+        }
+        return $arr;
+    }
+
+    /**
+     * 返回一维数组中指定的某些元素
+     * @param array $arr         一维数组
+     * @param array $filterKeys  需要返回的元素的键 ['id','name']
+     * @return array
+     */
+    public static function retainKeys(array $arr,array $filterKeys){
+        foreach ($arr as $key => $value){
+            if(!in_array($key,$filterKeys)){
+                unset($arr[$key]);
+            }
+        }
+        return $arr;
+    }
 }
 
