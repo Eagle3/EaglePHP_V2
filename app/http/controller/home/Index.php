@@ -1,26 +1,67 @@
 <?php
+/*
+
+URL访问:
+http://egv2.local/?m=home&c=index&a=my
+
+ */
+
 namespace http\controller\home;
 
 use core\lib\controller\WebController;
+use plugin\ip\IP;
 use plugin\system\captcha\Captcha;
 use core\lib\model\Model;
 use http\model\City;
 use plugin\system\Curl;
 use plugin\tools\ArrayTools;
+use plugin\tools\WorkDate;
 
 class Index extends WebController {
     public function init(){
         parent::init();
     }
-    
+    public function my(){
+        
+
+
+
+
+
+//        $isWorkDay = WorkDate::isWorkDay('20200127');
+//        var_dump($isWorkDay);
+
+//       $res = IP::find('122.114.68.31');
+//       //返回结果示例
+//       $res = Array
+//        (
+//            [0] => 中国
+//            [1] => 河南
+//            [2] => 郑州
+//            [3] =>
+//        )
+//       pr($res);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getInclude(){
         //返回被 include 和 require 文件名的 array
         pr( get_included_files() );
-        //
-        //
     }
-    
-    
+
     public function index(){
         
         //写入cookie，通知另一个应用（1.通过script标签链接另一个应用的PHP地址 2.通过iframe标签链接另一个应用的PHP地址 3.curl行不通）也写入此cookie数据即完成同步登录
