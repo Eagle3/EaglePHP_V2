@@ -22,7 +22,7 @@ class Index extends WebController {
         parent::init();
     }
     public function my(){
-        
+
 
 
 

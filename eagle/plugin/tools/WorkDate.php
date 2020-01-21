@@ -3,7 +3,7 @@ namespace plugin\tools;
 
 class WorkDate {
 
-    //当前年份中所有法定节假日，平时的周六日不算
+    //法定节假日，平时的周六日不算
     public static $holidays = [
         '20200124',
         '20200125',
@@ -15,7 +15,7 @@ class WorkDate {
     ];
 
     /*
-     * 当前年份中所有的调休日期，比如国庆假期前后周六、周日需要调休上班
+     * 所有的调休日期，比如国庆假期前后周六、周日需要调休上班
      * 责需要把这些日期放入 $daysOff 数组中格式
      *
      * $daysOff = [
