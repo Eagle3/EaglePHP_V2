@@ -248,3 +248,90 @@ function jsonDecode($jsonStr,$isReturnEmptyObj = false){
     return $isReturnEmptyObj ? (object)[] : [];
 }
 
+
+/**
+ * 中文格式的计算公式 转为 规定格式的计算公式
+ * 示例：
+ *   $calcShow = 上楼费 * 0.1 + (垃圾费 * 0.1) + ((搬运费(1) * 0.1) + 200) * 运输费
+ *      转成
+ *   $calc = $c_101 * 0.1 + ($c_102 * 0.1) + (($c_103 * 0.1) + 200) * $c_104
+ *
+ * @param string $calcShow    中文格式公式，形如： 上楼费 * 0.1 + 报价定额费用
+ * @param array $sysVarArr    系统附加费用变量字典，形如: [ '报价商品费用' => '$c_product_total_price', '报价定额费用' => '$c_quota_total_price' ]
+ * @param array $chargeArr    附加费用主项字典，形如: [ '上楼费' => 101, '搬运费' => 102 ]
+ * @return array
+ */
+function getCalcContent($calcShow,$sysVarArr,$chargeArr){
+    $contentVar = [];
+    foreach ($sysVarArr as $sysVarName => $sysVarValue){
+        //如果存在系统变量，则替换
+        if(strpos($calcShow,$sysVarName) !== false){
+            $contentVar[] = $sysVarValue;
+            $calcShow = str_replace($sysVarName,$sysVarValue,$calcShow);
+        }
+    }
+    if($chargeArr){
+        foreach ($chargeArr as $chargeName => $chargeId){
+            //如果存在附加费用主项名称，则替换
+            if(strpos($calcShow,$chargeName) !== false){
+                $calcName = '$c_'.$chargeId;
+                $contentVar[] = $calcName;
+                $calcShow = str_replace($chargeName,$calcName,$calcShow);
+            }
+        }
+    }
+    return [
+        'content_var' => $contentVar, //该公式中所有变量名称,示例 [ '$c_101','$c_product_total_price' ]
+        'calc' => $calcShow, //中文公式 经过字符串替换后的 公式,示例 $c_101 * 0.1 + $c_product_total_price
+    ];
+}
+//$calcShow = "上楼费 * 0.1 + (垃圾费 * 0.1) + ((搬运费(1) * 0.1) + 200) * 运输费 + 报价全部费用(商品+定额) + 报价定额费用 + 报价商品费用";
+//$sysVarArr = [
+//    '报价商品费用' => '$c_product_total_price',
+//    '报价定额费用' => '$c_quota_total_price',
+//    '报价全部费用(商品+定额)' => '$c_all_total_price',
+//];
+//$chargeArr = [
+//    '上楼费' => 101,
+//    '垃圾费' => 102,
+//    '搬运费(1)' => 103,
+//    '运输费' => 104,
+//];
+//p(getCalcContent($calcShow,$sysVarArr,$chargeArr));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
