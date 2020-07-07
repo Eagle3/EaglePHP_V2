@@ -229,3 +229,22 @@ function getFloatNumFormat($floatNum,$decimals,$isRound = true){
         return bcadd( (string)$floatNum, '0', $decimals);
     }
 }
+
+/**
+ * 按不同需要 json_decode 数据并返回默认值
+ *
+ * @param string $jsonStr            json字符串
+ * @param bool $isReturnEmptyObj     json_decode后的值，如果不是数组或数组值为空时，是否返回空对象
+ * @return array|mixed|object
+ */
+function jsonDecode($jsonStr,$isReturnEmptyObj = false){
+    $data = json_decode($jsonStr,true);
+    if(is_array($data)){
+        if($data){
+            return $data;
+        }
+        return $isReturnEmptyObj ? (object)[] : [];
+    }
+    return $isReturnEmptyObj ? (object)[] : [];
+}
+
