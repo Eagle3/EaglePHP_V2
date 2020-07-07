@@ -302,7 +302,98 @@ function getCalcContent($calcShow,$sysVarArr,$chargeArr){
 
 
 
+/**
+ * 计算数学表达式
+ *
+ * @param string $expr   数学表达式
+ * @return int|string
+ */
+function maths($expr){
+    $val = @eval("return $expr;");
+    return is_numeric($val) ? $val : 0;
+}
 
+/**
+ * 公式中的变量替换成具体的值
+ *
+ * @param string $calc          公式
+ * @param array $calcVar        公式中包含的变量
+ * @param array $varValueArr    数组，变量名称 => 变量值, 示例 ['$c_product_total_price' => 300]
+ * @return string
+ */
+function varReplace($calc,$calcVar,$varValueArr){
+    if(!$calcVar){
+        return $calc;
+    }
+    foreach ($calcVar as $var){
+        if(isset($varValueArr[$var])){
+            $value = $varValueArr[$var];
+        }else{
+            $value = 0; //变量未找到赋0
+        }
+        $calc = str_replace($var,$value,$calc);
+    }
+    return $calc;
+}
+
+/**
+ * 逐个计算每个附加费用策略的价格
+ *
+ * @param array $calcInfoArr    所有附加策略数组
+ * @param array $varValueArr    数组，系统变量名称 => 系统变量值, 示例 ['$c_product_total_price' => 300]
+ * @return array
+ */
+function countCalcPriceOneByOne($calcInfoArr,$varValueArr){
+    foreach ($calcInfoArr as &$calcInfo){
+        $totalPrice = maths(varReplace($calcInfo['content'],$calcInfo['content_var'],$varValueArr));
+        $calcInfo['total_price'] = $totalPrice;
+        $chargeCalcName = '$c_'.$calcInfo['charge_id'];
+        if(isset($varValueArr[$chargeCalcName])){
+            $varValueArr[$chargeCalcName] += $totalPrice;
+        }else{
+            $varValueArr[$chargeCalcName] = $totalPrice;
+        }
+    }
+    unset($calcInfo);
+    return [
+        'var_value_arr' => $varValueArr, //变量名称 => 变量值，数组
+        'calc_info_arr' => $calcInfoArr, //每个附加费用策略计算后的值
+    ];
+}
+////变量 => 金额 数组
+//$varValueArr = [
+//    '$c_product_total_price' => 300,
+//    '$c_quota_total_price' => 200,
+//    '$c_all_total_price' => 500,
+//];
+////每个附加规则数据格式
+//$calcInfoArr = [
+//    [
+//        'id' => 1001,
+//        'charge_id' => 101,
+//        'content' => '$c_quota_total_price * 0.1',
+//        'content_var' => ['$c_quota_total_price'],
+//    ],
+//    [
+//        'id' => 1002,
+//        'charge_id' => 102,
+//        'content' => '$c_product_total_price * 0.2',
+//        'content_var' => ['$c_product_total_price'],
+//    ],
+//    [
+//        'id' => 1003,
+//        'charge_id' => 103,
+//        'content' => '$c_all_total_price * 0.3',
+//        'content_var' => ['$c_all_total_price'],
+//    ],
+//    [
+//        'id' => 1004,
+//        'charge_id' => 104,
+//        'content' => '( $c_101 + $c_102 + $c_103 ) * 0.2',
+//        'content_var' => ['$c_101','$c_102','$c_103'],
+//    ]
+//];
+//p(countCalcPriceOneByOne($calcInfoArr,$varValueArr));
 
 
 
