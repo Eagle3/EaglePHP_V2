@@ -285,7 +285,7 @@ function getCalcContent($calcShow,$sysVarArr,$chargeArr){
         'calc' => $calcShow, //中文公式 经过字符串替换后的 公式,示例 $c_101 * 0.1 + $c_product_total_price
     ];
 }
-//$calcShow = "上楼费 * 0.1 + (垃圾费 * 0.1) + ((搬运费(1) * 0.1) + 200) * 运输费 + 报价全部费用(商品+定额) + 报价定额费用 + 报价商品费用";
+//$calcShow = "上楼费 * 0.1 + (垃圾费 * 0.1) + ((搬运费 * 0.1) + 200) * 运输费 + 报价全部费用(商品+定额) + 报价定额费用 + 报价商品费用";
 //$sysVarArr = [
 //    '报价商品费用' => '$c_product_total_price',
 //    '报价定额费用' => '$c_quota_total_price',
@@ -294,7 +294,7 @@ function getCalcContent($calcShow,$sysVarArr,$chargeArr){
 //$chargeArr = [
 //    '上楼费' => 101,
 //    '垃圾费' => 102,
-//    '搬运费(1)' => 103,
+//    '搬运费' => 103,
 //    '运输费' => 104,
 //];
 //p(getCalcContent($calcShow,$sysVarArr,$chargeArr));
