@@ -79,11 +79,11 @@ function checkNumRange($num,$filedInfo,$min = 0.00,$max = 99999.99,$decimalsMax 
     //范围
     if($isNeedCheckMin){
         if($isContainMin){
-            if(self::compareFloatNum($num,$min,'<',$decimalsMax)){
+            if(compareFloatNum($num,$min,'<',$decimalsMax)){
                 return "{$filedInfo}范围有误，最小值应大于等于{$min}";
             }
         }else{
-            if(self::compareFloatNum($num,$min,'<=',$decimalsMax)){
+            if(compareFloatNum($num,$min,'<=',$decimalsMax)){
                 return "{$filedInfo}范围有误，最小值应大于{$min}";
             }
         }
@@ -91,11 +91,11 @@ function checkNumRange($num,$filedInfo,$min = 0.00,$max = 99999.99,$decimalsMax 
 
     if($isNeedCheckMax){
         if($isContainMax){
-            if(self::compareFloatNum($num,$max,'>',$decimalsMax)){
+            if(compareFloatNum($num,$max,'>',$decimalsMax)){
                 return "{$filedInfo}范围有误，最大值应小于等于{$max}";
             }
         }else{
-            if(self::compareFloatNum($num,$max,'>=',$decimalsMax)){
+            if(compareFloatNum($num,$max,'>=',$decimalsMax)){
                 return "{$filedInfo}范围有误，最大值应小于{$max}";
             }
         }
